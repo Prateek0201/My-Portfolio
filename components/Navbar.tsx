@@ -8,6 +8,7 @@ const navItems = ["about", "skills", "experience", "achievements", "contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("about");
   const links = useMemo(
     () =>
@@ -81,17 +82,20 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center justify-end gap-2">
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="grid h-11 w-11 place-items-center rounded-full border border-border text-foreground lg:hidden">
               <Menu />
             </SheetTrigger>
-            <SheetContent className="border-border bg-card">
-              <div className="mt-10 flex flex-col gap-5">
+            <SheetContent className="border-border bg-card sm:max-w-xs">
+              <div className="mt-12 flex flex-col gap-2 px-2">
                 {links.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className="text-left font-[family-name:var(--font-mono)] text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-link-hover"
+                    onClick={() => {
+                      scrollTo(item.id);
+                      setIsOpen(false);
+                    }}
+                    className="rounded-lg px-4 py-3 text-left font-[family-name:var(--font-mono)] text-sm uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:bg-primary/10 hover:text-link-hover"
                   >
                     {item.label}
                   </button>
