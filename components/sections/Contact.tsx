@@ -12,12 +12,40 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
-    toast("Message sent! I'll get back to you soon.");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personal.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `New Portfolio Message from ${name}`,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Message sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        toast.error("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -50,8 +78,8 @@ export default function Contact() {
         <input className="w-full rounded-sm border border-border bg-background/70 px-3 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
         <input type="email" className="w-full rounded-sm border border-border bg-background/70 px-3 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <textarea className="w-full rounded-sm border border-border bg-background/70 px-3 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary" rows={5} placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} required />
-        <Button type="submit" className="min-h-11 rounded-[24px] bg-primary px-6 font-[family-name:var(--font-mono)] text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground hover:bg-secondary hover:text-foreground">
-          Send Message
+        <Button disabled={isSubmitting} type="submit" className="min-h-11 rounded-[24px] bg-primary px-6 font-[family-name:var(--font-mono)] text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground hover:bg-secondary hover:text-foreground disabled:opacity-50">
+          {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
       </form>
     </SectionWrapper>
