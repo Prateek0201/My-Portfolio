@@ -5,8 +5,8 @@ export const personal = {
     "Results-driven Data Scientist and AI/ML Engineer with 2.5+ years of experience building production-grade machine learning systems, generative AI platforms, and advanced analytics solutions. Proven expertise in designing multi-agent LLM frameworks, NLP pipelines, and large-scale data processing with PySpark and cloud platforms (AWS, Azure).",
   email: "paandaprateek0201@gmail.com",
   phone: "+91-9827703357",
-  linkedin: "",
-  github: "",
+  linkedin: "https://www.linkedin.com/in/prateek-kumar-panda-215b5524b",
+  github: "https://github.com/prateek0201",
   location: "Odisha, India",
 };
 
