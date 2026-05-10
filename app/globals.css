@@ -54,7 +54,6 @@
   --bg-surface: rgba(29, 29, 29, 0.78);
   --bg-elevated: rgba(45, 45, 45, 0.78);
   --accent-cyan: #3cffd0;
-  --accent-violet: #5200ff;
   --accent-cyan-dim: rgba(60, 255, 208, 0.14);
   --link-hover: #3860be;
   --text-primary: #ffffff;
@@ -74,14 +73,14 @@
   --secondary-foreground: var(--text-primary);
   --muted: var(--bg-surface);
   --muted-foreground: var(--text-secondary);
-  --accent: var(--accent-violet);
+  --accent: var(--accent-cyan);
   --accent-foreground: var(--text-primary);
-  --destructive: #5200ff;
+  --destructive: #3cffd0;
   --border: var(--border-subtle);
   --input: var(--border-subtle);
   --ring: #1eaedb;
   --chart-1: #3cffd0;
-  --chart-2: #5200ff;
+  --chart-2: #3cffd0;
   --chart-3: #ffe64d;
   --chart-4: #ff6bd6;
   --chart-5: #ff8c2a;
@@ -122,7 +121,7 @@
 .site-bg-fallback {
   background:
     radial-gradient(circle at 18% 16%, rgba(60, 255, 208, 0.16), transparent 30%),
-    radial-gradient(circle at 82% 24%, rgba(82, 0, 255, 0.2), transparent 34%),
+    radial-gradient(circle at 82% 24%, rgba(60, 255, 208, 0.2), transparent 34%),
     linear-gradient(135deg, var(--background), #0d0d12 58%, #151026);
 }
 
@@ -134,7 +133,7 @@
 .section-glass {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 34%),
-    linear-gradient(90deg, rgba(60, 255, 208, 0.035), rgba(82, 0, 255, 0.04));
+    linear-gradient(90deg, rgba(60, 255, 208, 0.035), rgba(60, 255, 208, 0.04));
   border-top: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
   backdrop-filter: blur(6px) saturate(1.12);
 }
@@ -171,16 +170,8 @@
   color: var(--accent-cyan);
 }
 
-.text-violet {
-  color: var(--accent-violet);
-}
-
 .bg-cyan {
   background-color: var(--accent-cyan);
-}
-
-.bg-violet {
-  background-color: var(--accent-violet);
 }
 
 .glass-card {

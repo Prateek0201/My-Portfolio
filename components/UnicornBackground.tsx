@@ -27,8 +27,7 @@ export default function UnicornBackground() {
       prefersReducedMotion ||
       connection?.saveData ||
       connection?.effectiveType === "2g" ||
-      deviceMemory === undefined ||
-      deviceMemory <= 4;
+      (deviceMemory && deviceMemory < 4);
 
     if (isConstrainedDevice) return;
 

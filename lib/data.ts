@@ -136,7 +136,7 @@ export const experience = [
           "Amazon Redshift",
         ],
         impact: "Systematic ML Framework",
-        impactColor: "violet",
+        impactColor: "cyan",
         bullets: [
           "Built Healthcare Professional (HCP) profiles using Email CTR, web traffic data, and unsupervised clustering models (K-Means, Hierarchical) to assess content effectiveness and audience segmentation.",
           "Developed a Streamlit-based simulation tool enabling clients to tune KPIs via content metadata, supporting data-driven targeting and eliminating manual trial-and-error.",

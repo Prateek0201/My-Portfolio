@@ -27,11 +27,7 @@ export default function Experience() {
                   className="glass-card glow-border relative p-5 sm:p-6"
                 >
                   <span
-                    className={`mb-4 inline-flex rounded-[20px] border px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.12em] sm:absolute sm:right-4 sm:top-4 ${
-                      project.impactColor === "violet"
-                        ? "border-accent bg-accent text-accent-foreground"
-                        : "border-primary bg-primary text-primary-foreground"
-                    }`}
+                    className="mb-4 inline-flex rounded-[20px] border px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.12em] sm:absolute sm:right-4 sm:top-4 border-primary bg-primary text-primary-foreground"
                   >
                     {project.impact}
                   </span>
@@ -42,13 +38,7 @@ export default function Experience() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`rounded-[20px] border px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.1em] ${
-                          /XGBoost|PySpark|Databricks|Power BI|K-Means|Hierarchical|Boruta|Redshift|Azure|ADLS/.test(
-                            tag,
-                          )
-                            ? "border-accent text-accent"
-                            : "border-primary text-primary"
-                        }`}
+                        className="rounded-[20px] border px-2.5 py-1 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.1em] border-primary text-primary"
                       >
                         {tag}
                       </span>
