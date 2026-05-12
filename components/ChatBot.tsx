@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [showGreeting, setShowGreeting] = useState(true);
   const { messages, sendMessage, status } = useChat();
   
   const isLoading = status === "submitted" || status === "streaming";
@@ -33,6 +34,14 @@ export default function ChatBot() {
     }
   }, [messages]);
 
+  // Hide greeting after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowGreeting(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       {/* Chat Button Container */}
@@ -43,7 +52,7 @@ export default function ChatBot() {
       >
         <div className="relative flex items-center justify-end">
           {/* Greeting Popup / Tooltip */}
-          <div className="absolute right-full mr-4 animate-bounce">
+          <div className={`absolute right-full mr-4 animate-bounce transition-opacity duration-500 ${showGreeting ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <div className="relative rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-xl whitespace-nowrap">
               Ask about me! ✨
               {/* Little triangle pointing right */}
@@ -158,13 +167,14 @@ export default function ChatBot() {
             <input
               value={input || ""}
               onChange={handleInputChange}
-              placeholder="Ask a question..."
-              className="w-full rounded-full border border-border bg-secondary/50 py-2.5 pl-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+              placeholder="Chat is currently unavailable"
+              disabled={true}
+              className="w-full rounded-full border border-border bg-secondary/50 py-2.5 pl-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             />
             <button
               type="submit"
-              disabled={isLoading || !input || !input.trim()}
-              className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+              disabled={true}
+              className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
             >
               <Send size={14} className="-ml-0.5" />
             </button>
