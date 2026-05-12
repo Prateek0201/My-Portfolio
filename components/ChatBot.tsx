@@ -167,14 +167,13 @@ export default function ChatBot() {
             <input
               value={input || ""}
               onChange={handleInputChange}
-              placeholder="Chat is currently unavailable"
-              disabled={true}
-              className="w-full rounded-full border border-border bg-secondary/50 py-2.5 pl-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              placeholder="Ask a question..."
+              className="w-full rounded-full border border-border bg-secondary/50 py-2.5 pl-4 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
             <button
               type="submit"
-              disabled={true}
-              className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              disabled={isLoading || !input || !input.trim()}
+              className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
             >
               <Send size={14} className="-ml-0.5" />
             </button>

@@ -40,7 +40,6 @@ export const metadata: Metadata = {
   },
 };
 
-import ChatBot from "@/components/ChatBot";
 
 export default function RootLayout({
   children,
@@ -59,7 +58,6 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
-        <ChatBot />
       </body>
     </html>
   );
